@@ -53,10 +53,10 @@ ax3.set_ylim(.9,1.1)
 lines = []
 fd = lw(100, .005, mhd_init, mhd_flux, m=1000)
 while(fd.t < 100):
-    p = ax1.plot(fd.grid, fd.q[:,2]/fd.q[:,0], color='black')
-    p.append(ax2.plot(fd.grid, fd.q[:,5], color='green')[0])
-    p.append(ax3.plot(fd.grid, fd.q[:,0], color='blue')[0])
-    lines.append(p)
+    u_line,   = ax1.plot(fd.grid, fd.q[:,2]/fd.q[:,0], color='black')
+    By_line,  = ax2.plot(fd.grid, fd.q[:,5], color='green')
+    rho_line, = ax3.plot(fd.grid, fd.q[:,0], color='blue')
+    lines.append([u_line, By_line, rho_line])
     fd.step(200)
 
 ani = animation.ArtistAnimation(fig, lines)
